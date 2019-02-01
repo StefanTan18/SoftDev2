@@ -1,7 +1,9 @@
-//Stefan Tan
+//Team Jam Sandwich - Derek Song & Stefan Tan
 //SoftDev2 pd8
-//K00 -- I See a Red Door...
-//2019-01-30
+//K01 -- ...and I want to Paint It Better
+//2019-01-31
+
+//e.preventDefault(); was not used but the default action is not performed when this is called
 
 var c = document.getElementById("slate");
 var ctx = c.getContext("2d");
@@ -17,12 +19,6 @@ var clear = function() {
 
 var toggle = function() {
     isDot = !isDot;
-    if (isDot) {
-	togbut.innerHTML = "Click for Boxes!";
-    }
-    else {
-	togbut.innerHTML = "Click for Dots!";
-    }
 }
 
 var box = function(x, y) {   
@@ -31,15 +27,15 @@ var box = function(x, y) {
 }
 
 var dot = function(x, y) {
-    ctx.beginPath();
+    ctx.beginPath(); //When called, it resets the path, clearing all the previous calls
     ctx.fillStyle = "blue";
     ctx.ellipse(x,y,5,5,0,0,2 * Math.PI);
     ctx.fill();
 }
 
 var draw = function(e) {
-    var x = e.offsetX;
-    var y = e.offsetY;
+    var x = e.offsetX; //The value of the x coordinate relative to the canvas (upper left corner)
+    var y = e.offsetY; //The value of the y coordinate relative to the canvas (upper left corner)
     if(isDot) {
 	dot(x,y);
     }
