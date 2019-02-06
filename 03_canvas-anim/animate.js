@@ -9,6 +9,7 @@
 var canvas = document.getElementById('playground');
 var ctx = canvas.getContext("2d");
 
+//dict to store start point of circle
 var coords = {'x': canvas.width/2, 'y': canvas.height/2}
 
 //state variables
@@ -17,8 +18,6 @@ var radius = 0;
 var growing = true;
 var animated = false;
 
-// clears everything in the canvas
-// starts from the origin of the canvas
 var stopIt = function (e) {
     console.log(requestID);
     if (requestID > 0) {
@@ -26,20 +25,13 @@ var stopIt = function (e) {
 	animated = false;
 	window.cancelAnimationFrame(requestID);
     }
-    /*
-      e.preventDefault()
-      preventDefault prevents a default action from happening if an event is not handled
-      similarly to a conditional
-      We did not come to a consensus on what preventDefault should be used for in this assignment
-    */
 };
 
 // button stops the animation on the canvas now
 var stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', stopIt);
 
-
-// draw dot, with origin at mouse click
+// draw dot, with origin at center of canvas
 var dot = function (e) {
     console.log(requestID);
     var xCord = coords['x'];
@@ -49,9 +41,9 @@ var dot = function (e) {
     drawDot(xCord,yCord);
 };
 
-
 // draw dot given x and y coords
 var drawDot = function (x, y){
+    // clears canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // drawing an ellipse requires beginPath for the rendering context to
     // know where to start drawing the arc of the ellipse from
@@ -91,4 +83,3 @@ startButton.addEventListener('click', function(e) {
 	animated = true;
     }
 });
-    
