@@ -9,6 +9,8 @@
 var canvas = document.getElementById('playground');
 var ctx = canvas.getContext("2d");
 
+ctx.fillStyle = "#00BFFF";
+
 //dict to store start point of circle
 var coords = {'x': canvas.width/2, 'y': canvas.height/2}
 
