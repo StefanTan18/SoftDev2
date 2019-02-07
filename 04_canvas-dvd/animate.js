@@ -1,8 +1,8 @@
 /*
-  team 3Zs - Stefan Tan and Zane Wang
-  SoftDev2 pd8
-  K03 -- They lock us in the tower whenever we get caught
-  2019-02-04
+  team ZJS - Stefan Tan, Johnny Wong, and Zane Wang
+  SoftDev pd8
+  K04 -- What is it saving the screen from?
+  2019-02-06
 */
 
 // instantiate canvas
