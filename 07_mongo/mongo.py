@@ -18,7 +18,6 @@ def findPrizeYear(year):
     for p in prizes:
         print(p)
 
-findPrizeYear("2018")
-
+findPrizeYear(2018)
 
     
