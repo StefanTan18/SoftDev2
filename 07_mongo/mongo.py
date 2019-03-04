@@ -7,63 +7,44 @@ import pymongo
 
 SERVER_ADDR = "104.248.49.56"
 connection = pymongo.MongoClient(SERVER_ADDR)
-db = connection.test
-collection = db.restaurants
+db = connection.MongoTrees
+collection = db.earthquakes
 
 '''
-Finds all restaurants in a specified borough.
+Finds all earthquakes by alert.
 '''
-def findRestBorough(borough):
-    restaurants = collection.find({"borough":borough})
-    for restaurant in restaurants:
-        print(restaurant)
+def findEQAlert(alert):
+    earthquakes = collection.find({"features.properties.alert":alert})
+    for e in earthquakes:
+        print(e)
 
 '''
-Finds all restaurants in a specified zip code.
+Finds all earthquakes with the magnitude.
 '''
-def findRestZip(zipcode):
-    zipcode = str(zipcode)
-    restaurants = collection.find({"address.zipcode":zipcode})
-    for restaurant in restaurants:
-        print(restaurant)
+def findEQMag(magnitude):
+    earthquakes = collection.find({"features.properties.mag":magnitude})
+    for e in earthquakes:
+        print(e)
 
 '''
-Finds all restaurants in a specified zip code and with a specified grade.
+Finds all earthquakes with n numbers of tsunami.
 '''
-def findRestZipGrade(zipcode, grade):
-    zipcode = str(zipcode)
-    restaurants = collection.find({"$and":[{"address.zipcode":zipcode},
-                                              {"grades.grade":grade}]})
-    for restaurant in restaurants:
-        print(restaurant)
+def findEQTsunami(n):
+    earthquakes = collection.find({"features.properties.tsunami":n})
+    for e in earthquakes:
+        print(e)
 
 '''
-Finds all restaurants in a specified zip code with a score below a specified threshold.
+Finds all earthquakes with a magnitude less than or equal to the parameter.
 '''
-def findRestZipScore(zipcode, score):
-    zipcode = str(zipcode)
-    score = str(score)
-    restaurants = collection.find({"$or":[{"address.zipcode":zipcode},
-                                            {"grades.score":{"$lt":score}}]})
-    for restaurant in restaurants:
-        print(restaurant)
+def findEQMagLess(magnitude):
+    earthquakes = collection.find({"features.properties.mag":{"$lte":score}})
+    for e in earthquakes:
+        print(e)
 
-def findRestBCG(borough, cuisine, grade):
-    restaurants = collection.find({"$and":[{"borough":borough},
-                                           {"cuisine": cuisine},
-                                           {"grades.grade":grade}]})
-    for restaurant in restaurants:
-        print(restaurant)
+print("START")
+findEQAlert("green")
+print("HELLO")
 
-print("Printing restaurants based on borough...\n\n")
-findRestBorough("Manhattan")
-print("\n\nPrinting restaurants based on zipcode...\n\n")
-findRestZip(10017)
-print("\n\nPrinting restaurants based on zipcode and grade...\n\n")
-findRestZipGrade(10017, "B")
-print("\n\nPrinting restaurants based on zipcode and score...\n\n")
-findRestZipScore(10017, 20)
-print("\n\nPrinting restaurants based on borough, cuisine, and grade...\n\n")
-findRestBCG("Manhattan", "American", "A")
 
     
