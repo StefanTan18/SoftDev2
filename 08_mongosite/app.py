@@ -12,10 +12,10 @@ connection.drop_database("WorldWarZ")
 db = connection.WorldWarZ
 collection = db.movies
 
-f = open("data/movies.json")
-data = json.load(f)
-collection.remove()
-collection.insert_many(data["movies"])
+with open('data/movies.json') as f:
+    lines = f.read()
+    data = json.loads(lines)
+    collection.insert_many(data)
 
 @app.route("/")
 def index():
@@ -23,20 +23,24 @@ def index():
 
 @app.route("/ip", methods=['POST'])
 def connect():
-    try:
-        connection.drop_database("WorldWarZ")
-        connection = pymongo.MongoClient(request.form['ip'])
-        db = connection.WorldWarZ
-        collection = db.movies
-
-        f = open("./data/movies.json")
-        data = json.load(f)
-        collection.remove()
-        collection.insert_many(data["movies"])
+    #try:
+    ip = request.form['ip']
+    connection = pymongo.MongoClient(SERVER_ADDR)
+    connection.drop_database("WorldWarZ")
+    connection = pymongo.MongoClient(ip)
+    db = connection.WorldWarZ
+    collection = db.movies
         
-    except:
-        flash("Not a valid ip address to connect to")
-        print("Not a valid ip address to connect to")
+    with open('data/movies.json') as f:
+        lines = f.read()
+        data = json.loads(lines)
+        collection.insert_many(data)
+        
+    #except:
+      #  flash("Not a valid ip address to connect to")
+       # print("Not a valid ip address to connect to")
+
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.debug = True
