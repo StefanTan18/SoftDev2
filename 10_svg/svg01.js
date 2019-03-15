@@ -30,6 +30,7 @@ var circle = function(x, y) {
 }
 
 var color = function(e, c) {
+    e.stopPropagation();
     if(c.getAttribute("fill") == "blue") {
 	c.setAttribute("fill", "green");
     }
@@ -42,7 +43,7 @@ var color = function(e, c) {
 
 var draw = function(e) {
     var x = e.offsetX;
-    var y = e.offsetY; 
+    var y = e.offsetY;
     circle(x,y);
 }
 
