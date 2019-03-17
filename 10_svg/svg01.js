@@ -1,6 +1,6 @@
 //Stefan Tan
 //SoftDev2 pd8
-//K10x -- Ask Circles [Change || Die]
+//K10 -- Ask Circles [Change || Die]
 //2019-03-13
 
 var p = document.getElementById("vimage");
