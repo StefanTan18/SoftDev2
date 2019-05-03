@@ -1,4 +1,11 @@
 '''
+Stefan Tan
+SoftDev2 pd8
+K23 -- Memoize With Closure
+2019-05-01
+'''
+
+'''
 import random
 
 def make_HTML_heading(f):
