@@ -49,6 +49,7 @@ def memoize(f):
         return memo[x]
     return helper
 
+@memoize
 def fib(n):
     if n == 0:
         return 0
@@ -57,5 +58,4 @@ def fib(n):
     else:
         return fib(n-1) + fib(n-2)
 
-fib = memoize(fib)
 print(fib(40))
